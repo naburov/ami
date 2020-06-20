@@ -140,6 +140,12 @@ window.onload = function() {
         }
       }
 
+    threeD.addEventListener('contextmenu', function(evt){
+      widgets = widgets.filter(function (el) {
+        return el._container != null;
+      });      
+    })
+    
       threeD.style.cursor = 'default';
 
       // mouse position
