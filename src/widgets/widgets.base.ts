@@ -1,5 +1,6 @@
 import WidgetsCss from './widgets.css';
 
+import * as THREE from 'three'
 import {COLORS} from '../core/core.colors';
 import CoreUtils from '../core/core.utils';
 
