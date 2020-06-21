@@ -82,7 +82,9 @@ const widgetsAngle = (three = window.THREE) => {
       this._line2.removeEventListener('mouseleave', this.onHover);
       this._label.removeEventListener('mouseenter', this.onHover);
       this._label.removeEventListener('mouseleave', this.onHover);
+
     }
+
 
     onHover(evt) {
       if (evt) {

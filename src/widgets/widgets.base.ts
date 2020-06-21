@@ -1,6 +1,7 @@
 import WidgetsCss from './widgets.css';
 
 import * as THREE from 'three'
+import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
 import {COLORS} from '../core/core.colors';
 import CoreUtils from '../core/core.utils';
 
@@ -39,7 +40,7 @@ const widgetsBase = (three = (window as any).THREE) => {
 
   const Constructor = three.Object3D;
   return class extends Constructor {
-    constructor(targetMesh: THREE.Mesh, controls: THREE.OrbitControls, params: WidgetParameter) {
+    constructor(targetMesh: THREE.Mesh, controls: OrbitControls, params: WidgetParameter) {
       super();
 
       this._widgetType = 'Base';

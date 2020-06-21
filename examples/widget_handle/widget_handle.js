@@ -54,7 +54,7 @@ function init() {
     render();
 
     // request new frame
-    requestAnimationFrame(function() {
+    requestAnimationFrame(function () {
       animate();
     });
   }
@@ -93,7 +93,7 @@ function init() {
   animate();
 }
 
-window.onload = function() {
+window.onload = function () {
   // init threeJS...
   init();
 
@@ -108,7 +108,7 @@ window.onload = function() {
 
     scene.add(stackHelper);
 
-    threeD.addEventListener('mouseup', function() {
+    threeD.addEventListener('mouseup', function () {
       // if something hovered, exit
       for (let widget of widgets) {
         if (widget.active) {
@@ -118,7 +118,7 @@ window.onload = function() {
       }
     });
 
-    threeD.addEventListener('mousemove', function(evt) {
+    threeD.addEventListener('mousemove', function (evt) {
       // if something hovered, exit
       let cursor = 'default';
       for (let widget of widgets) {
@@ -131,21 +131,41 @@ window.onload = function() {
       threeD.style.cursor = cursor;
     });
 
-    threeD.addEventListener('mousedown', function(evt) {
+    function detectLeftButton(evt) {
+      evt = evt || window.event;
+      if ("buttons" in evt) {
+        return evt.buttons == 1;
+      }
+      var button = evt.which || evt.button;
+      return button == 1;
+    }
+
+    threeD.addEventListener('mousedown', function (evt) {
       // if something hovered, exit
       for (let widget of widgets) {
+        let leftButtonPressed = detectLeftButton(evt)
+        console.log(leftButtonPressed)
         if (widget.hovered) {
           widget.onStart(evt);
           return;
         }
       }
 
-    threeD.addEventListener('contextmenu', function(evt){
-      widgets = widgets.filter(function (el) {
-        return el._container != null;
-      });      
-    })
-    
+      threeD.addEventListener('contextmenu', function (evt) {
+        for (let widget of widgets) {
+          if (widget.hovered) {
+            widget.free();
+            console.log(widgets.length)
+            widgets = widgets.filter(function (el) {
+               return el._container != null;
+            });
+            return;
+          }
+        }
+                
+        threeD.style.cursor = 'default';
+      })
+
       threeD.style.cursor = 'default';
 
       // mouse position

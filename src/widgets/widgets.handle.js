@@ -56,7 +56,6 @@ const widgetsHandle = (three = window.THREE) => {
       this.onResize = this.onResize.bind(this);
       this.onMove = this.onMove.bind(this);
       this.onHover = this.onHover.bind(this);
-      this.onDelete = this.onDelete.bind(this)
       this.addEventListeners();
     }
 
@@ -65,7 +64,6 @@ const widgetsHandle = (three = window.THREE) => {
 
       this._dom.addEventListener('mouseenter', this.onHover);
       this._dom.addEventListener('mouseleave', this.onHover);
-      this._dom.addEventListener('contextmenu', this.onDelete);
 
       this._container.addEventListener('wheel', this.onMove);
     }
@@ -75,17 +73,12 @@ const widgetsHandle = (three = window.THREE) => {
 
       this._dom.removeEventListener('mouseenter', this.onHover);
       this._dom.removeEventListener('mouseleave', this.onHover);
-      this._dom.removeEventListener('contextmenu', this.onDelete);
 
       this._container.removeEventListener('wheel', this.onMove);
     }
 
     onResize() {
       this.initOffsets();
-    }
-
-    onDelete(evt){
-      this.free()
     }
 
     onHover(evt) {
